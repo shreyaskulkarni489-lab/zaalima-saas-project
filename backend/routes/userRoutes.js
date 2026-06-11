@@ -3,6 +3,9 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
+const protect = require("../middleware/authMiddleware");
+const authorize = require("../middleware/roleMiddleware");
+
 
 router.post("/register", async (req, res) => {
   try {
@@ -98,4 +101,41 @@ router.post("/login", async (req, res) => {
     });
   }
 });
+
+//Admin Route
+router.get(
+  "/admin",
+  protect,
+  authorize("superadmin"),
+  (req, res) => {
+    res.json({
+      message: "Welcome Super Admin",
+    });
+  }
+);
+
+//Vendor Route
+router.get(
+  "/vendor",
+  protect,
+  authorize("vendor"),
+  (req, res) => {
+    res.json({
+      message: "Welcome Vendor",
+    });
+  }
+);
+
+//Customer Route
+router.get(
+  "/customer",
+  protect,
+  authorize("customer"),
+  (req, res) => {
+    res.json({
+      message: "Welcome Customer",
+    });
+  }
+);
 module.exports = router;
+
