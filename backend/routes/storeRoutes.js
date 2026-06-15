@@ -98,4 +98,34 @@ router.put(
     }
   }
 );
+
+
+// DELETE STORE
+router.delete(
+  "/delete/:id",
+  protect,
+  authorize("vendor"),
+  async (req, res) => {
+    try {
+      const store = await Store.findById(req.params.id);
+
+      if (!store) {
+        return res.status(404).json({
+          message: "Store not found",
+        });
+      }
+
+      await Store.findByIdAndDelete(req.params.id);
+
+      res.json({
+        message: "Store Deleted Successfully",
+      });
+
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
 module.exports = router;
