@@ -128,4 +128,27 @@ router.delete(
     }
   }
 );
+
+// GET ALL STORES
+// GET ALL STORES (ADMIN ONLY)
+router.get(
+  "/",
+  protect,
+  authorize("superadmin"),
+  async (req, res) => {
+    try {
+      const stores = await Store.find().populate(
+        "owner",
+        "name email role"
+      );
+
+      res.status(200).json(stores);
+
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
 module.exports = router;
