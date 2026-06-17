@@ -151,4 +151,29 @@ router.get(
     }
   }
 );
+
+// GET SINGLE STORE
+router.get(
+  "/:id",
+  protect,
+  async (req, res) => {
+    try {
+      const store = await Store.findById(req.params.id)
+        .populate("owner", "name email role");
+
+      if (!store) {
+        return res.status(404).json({
+          message: "Store not found",
+        });
+      }
+
+      res.status(200).json(store);
+
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
 module.exports = router;
