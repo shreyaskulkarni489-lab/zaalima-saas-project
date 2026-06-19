@@ -50,4 +50,23 @@ router.post(
   }
 );
 
+// GET PRODUCTS BY STORE
+router.get(
+  "/store/:storeId",
+  async (req, res) => {
+    try {
+      const products = await Product.find({
+        store: req.params.storeId,
+      });
+
+      res.status(200).json(products);
+
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+
 module.exports = router;
