@@ -1,0 +1,23 @@
+[33me1a2dfd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: commit (amend): Day 7: Added My Store API for Vendors
+[33m6045198[m HEAD@{1}: commit (amend): Day 7: Added My Store API for Vendors
+[33ma7eb6fa[m HEAD@{2}: reset: moving to HEAD~1
+[33m0ef24c3[m HEAD@{3}: reset: moving to HEAD~1
+[33m5499638[m HEAD@{4}: commit (amend): Day 8: Added Store Update API
+[33m0737f60[m HEAD@{5}: commit (amend): Day 7: Added My Store API for Vendors
+[33m877db44[m HEAD@{6}: commit (amend): Day 8: Added Store Update API
+[33mae8f5f0[m HEAD@{7}: commit (amend): Day 7: Added Vendor Store Creation Module
+[33mf7c7b27[m HEAD@{8}: commit (amend): Day 8: Added My Store API for Vendors
+[33m8bfec03[m HEAD@{9}: commit (amend): Day 7: Added Vendor Store Creation Module
+[33m0f312af[m HEAD@{10}: commit (amend): Day 7: Added Vendor Store Creation Module
+[33m0f312af[m HEAD@{11}: commit: Day 7: Added Vendor Store Creation Module
+[33m0ef24c3[m HEAD@{12}: commit (amend): Day 6: Added Role Based Access Control
+[33md47c93d[m HEAD@{13}: commit: Day 7: Added Role Based Access Control
+[33ma7eb6fa[m HEAD@{14}: commit (amend): Day 5: Added bcrypt password hashing and secure registration
+[33meeb7eaf[m HEAD@{15}: commit: Day 6: Added JWT login authentication
+[33ma69cb7c[m HEAD@{16}: commit: Day 4: Created Register API
+[33mfb20efa[m HEAD@{17}: commit: Day 3: Created User Model
+[33m189f12e[m HEAD@{18}: commit (amend): Day 2: Connected MongoDB Atlas with backend
+[33m495f1ee[m HEAD@{19}: commit (amend): Day 2: Connected MongoDB Atlas with backend
+[33m319345f[m HEAD@{20}: commit: Day 2: Connected MongoDB Atlas with backend
+[33m80a3e5c[m HEAD@{21}: Branch: renamed refs/heads/main to refs/heads/main
+[33m80a3e5c[m HEAD@{23}: commit (initial): chore: initialize fullstack project setup

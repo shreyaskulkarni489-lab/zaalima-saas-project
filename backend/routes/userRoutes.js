@@ -137,5 +137,85 @@ router.get(
     });
   }
 );
-module.exports = router;
 
+// GET USER PROFILE
+router.get(
+  "/profile",
+  protect,
+  async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id).select("-password");
+
+      if (!user) {
+        return res.status(404).json({
+          message: "User not found",
+        });
+      }
+
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+
+// UPDATE USER PROFILE
+router.put(
+  "/profile",
+  protect,
+  async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id);
+
+      if (!user) {
+        return res.status(404).json({
+          message: "User not found",
+        });
+      }
+
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+
+      if (req.body.password) {
+        user.password = await bcrypt.hash(req.body.password, 10);
+      }
+
+      const updatedUser = await user.save();
+
+      res.status(200).json({
+        message: "Profile Updated Successfully",
+        user: {
+          _id: updatedUser._id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          role: updatedUser.role,
+        },
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+
+// GET ALL USERS (ADMIN)
+router.get(
+  "/",
+  protect,
+  authorize("superadmin"),
+  async (req, res) => {
+    try {
+      const users = await User.find().select("-password");
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+
+module.exports = router;

@@ -1,34 +1,54 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 
-import Navbar from "./components/Navbar";
+/* Common Components */
+import Navbar from './components/common/Navbar';
+import Footer from './components/common/Footer';
+import ProtectedRoute from './components/common/ProtectedRoute';
 
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Products from "./pages/Products";
-import ProductDetails from "./pages/ProductDetails";
-import Cart from "./pages/Cart";
-import Wishlist from "./pages/Wishlist";
-import Orders from "./pages/Orders";
-import Profile from "./pages/Profile";
+/* Customer Pages */
+import Login from './pages/customer/Login';
+import Register from './pages/customer/Register';
+
+/* Misc Pages */
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
+    <AuthProvider>
+      <BrowserRouter>
+        <Navbar />
+        <main>
+          <Routes>
+            {/* ======================== */}
+            {/* PUBLIC ROUTES            */}
+            {/* ======================== */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductDetails />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </BrowserRouter>
+            {/* ======================== */}
+            {/* PLACEHOLDER HOME (Day 2) */}
+            {/* ======================== */}
+            <Route
+              path="/"
+              element={
+                <div className="container py-5 text-center">
+                  <h1 className="display-4 fw-bold mb-3">Welcome to Zaalima</h1>
+                  <p className="text-muted fs-5">Your trusted multi-vendor e-commerce platform.</p>
+                  <p className="text-muted">Full Home page coming in Day 2.</p>
+                </div>
+              }
+            />
+
+            {/* ======================== */}
+            {/* 404 CATCH-ALL            */}
+            {/* ======================== */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

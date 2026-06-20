@@ -146,4 +146,69 @@ router.get("/filter", async (req, res) => {
     });
   }
 });
-module.exports = router;
+
+// UPDATE PRODUCT
+router.put(
+  "/update/:id",
+  protect,
+  authorize("vendor"),
+  async (req, res) => {
+    try {
+      const { productName, description, price, image } = req.body;
+
+      const product = await Product.findById(req.params.id);
+
+      if (!product) {
+        return res.status(404).json({
+          message: "Product not found",
+        });
+      }
+
+      product.productName = productName || product.productName;
+      product.description = description || product.description;
+      product.price = price || product.price;
+      product.image = image || product.image;
+
+      await product.save();
+
+      res.status(200).json({
+        message: "Product Updated Successfully",
+        product,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+
+// DELETE PRODUCT
+router.delete(
+  "/delete/:id",
+  protect,
+  authorize("vendor"),
+  async (req, res) => {
+    try {
+      const product = await Product.findById(req.params.id);
+
+      if (!product) {
+        return res.status(404).json({
+          message: "Product not found",
+        });
+      }
+
+      await Product.findByIdAndDelete(req.params.id);
+
+      res.json({
+        message: "Product Deleted Successfully",
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+
+module.exports = router;

@@ -164,7 +164,7 @@ router.put(
 router.put(
   "/status/:id",
   protect,
-  authorize("vendor", "admin"),
+  authorize("vendor", "superadmin"),
   async (req, res) => {
     try {
 
@@ -202,7 +202,7 @@ router.put(
 router.get(
   "/all",
   protect,
-  authorize("admin"),
+  authorize("superadmin"),
   async (req, res) => {
     try {
 
