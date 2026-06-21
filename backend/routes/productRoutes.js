@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Product = require("../models/Product");
 const Store = require("../models/Store");
+const upload = require("../middleware/uploadMiddleware");
 
 const protect = require("../middleware/authMiddleware");
 const authorize = require("../middleware/roleMiddleware");
@@ -61,6 +62,25 @@ router.get(
 
       res.status(200).json(products);
 
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+// image upload route
+router.post(
+  "/upload-image",
+  protect,
+  authorize("vendor"),
+  upload.single("image"),
+  async (req, res) => {
+    try {
+      res.status(200).json({
+        message: "Image Uploaded Successfully",
+        imageUrl: req.file.path,
+      });
     } catch (error) {
       res.status(500).json({
         message: error.message,

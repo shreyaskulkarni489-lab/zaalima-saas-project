@@ -22,11 +22,15 @@ const productSchema = new mongoose.Schema(
       ref: "Store",
       required: true,
     },
+    image: {
+  type: String,
+    }
   },
   {
     timestamps: true,
   }
 );
+
 
 module.exports = mongoose.model(
   "Product",
