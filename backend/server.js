@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const storeRoutes = require("./routes/storeRoutes");
+const vendorRoutes = require("./routes/vendorRoutes");
 
 const User = require("./models/User");
 const connectDB = require("./config/db");
@@ -18,7 +19,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/stores", storeRoutes);
 app.use("/api/products", productRoutes);
-
+app.use("/api/vendor", vendorRoutes);
 app.get("/", (req, res) => {
   res.send("Zaalima API is running 🚀");
 });
