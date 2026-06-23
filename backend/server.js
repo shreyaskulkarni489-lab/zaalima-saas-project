@@ -8,6 +8,7 @@ const User = require("./models/User");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 
 connectDB();
 
@@ -19,6 +20,8 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/stores", storeRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
+
 app.use("/api/vendor", vendorRoutes);
 app.get("/", (req, res) => {
   res.send("Zaalima API is running 🚀");
