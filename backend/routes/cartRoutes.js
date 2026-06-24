@@ -93,4 +93,86 @@ router.get(
   }
 );
 
+router.put(
+  "/update",
+  protect,
+  authorize("customer"),
+  async (req, res) => {
+    try {
+      const { productId, quantity } = req.body;
+
+      const cart = await Cart.findOne({
+        customer: req.user.id,
+      });
+
+      if (!cart) {
+        return res.status(404).json({
+          message: "Cart not found",
+        });
+      }
+
+      const item = cart.products.find(
+        (product) => product.product.toString() === productId
+      );
+
+      if (!item) {
+        return res.status(404).json({
+          message: "Product not found in cart",
+        });
+      }
+
+      item.quantity = quantity;
+
+      await cart.save();
+
+      res.status(200).json({
+        message: "Cart Updated Successfully",
+        cart,
+      });
+
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+
+router.delete(
+  "/remove/:productId",
+  protect,
+  authorize("customer"),
+  async (req, res) => {
+    try {
+
+      const cart = await Cart.findOne({
+        customer: req.user.id,
+      });
+
+      if (!cart) {
+        return res.status(404).json({
+          message: "Cart not found",
+        });
+      }
+
+      cart.products = cart.products.filter(
+        (item) =>
+          item.product.toString() !== req.params.productId
+      );
+
+      await cart.save();
+
+      res.status(200).json({
+        message: "Product Removed From Cart",
+        cart,
+      });
+
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+
 module.exports = router;
