@@ -10,7 +10,7 @@ const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
-
+const paymentRoutes = require("./routes/paymentRoutes");
 connectDB();
 
 const app = express();
@@ -19,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 
+app.use("/api/payments", paymentRoutes);
 app.use("/api/orders", orderRoutes);
 
 app.use("/api/users", userRoutes);
