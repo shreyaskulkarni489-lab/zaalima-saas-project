@@ -6,6 +6,7 @@ const Cart = require("../models/Cart");
 
 const protect = require("../middleware/authMiddleware");
 const authorize = require("../middleware/roleMiddleware");
+const Notification = require("../models/Notification");
 
 
 // ==========================
@@ -41,6 +42,10 @@ router.post(
       });
 
       await order.save();
+      await Notification.create({
+  user: req.user.id,
+  message: `Your order has been placed successfully.`,
+});
 
       // Clear Cart
       cart.products = [];
