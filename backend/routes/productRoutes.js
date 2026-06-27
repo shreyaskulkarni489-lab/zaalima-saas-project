@@ -102,4 +102,48 @@ router.get("/", async (req, res) => {
   }
 });
 
+// SEARCH PRODUCTS
+router.get("/search", async (req, res) => {
+  try {
+
+    const keyword = req.query.keyword;
+
+    const products = await Product.find({
+      productName: {
+        $regex: keyword,
+        $options: "i",
+      },
+    });
+
+    res.status(200).json(products);
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
+
+// FILTER PRODUCTS BY PRICE
+router.get("/filter", async (req, res) => {
+  try {
+
+    const minPrice = Number(req.query.min) || 0;
+    const maxPrice = Number(req.query.max) || Number.MAX_SAFE_INTEGER;
+
+    const products = await Product.find({
+      price: {
+        $gte: minPrice,
+        $lte: maxPrice,
+      },
+    });
+
+    res.status(200).json(products);
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
 module.exports = router;

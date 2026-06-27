@@ -11,6 +11,7 @@ const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
+const wishlistRoutes = require("./routes/wishlistRoutes");
 connectDB();
 
 const app = express();
@@ -26,6 +27,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/stores", storeRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/wishlist", wishlistRoutes);
 
 app.use("/api/vendor", vendorRoutes);
 app.get("/", (req, res) => {
