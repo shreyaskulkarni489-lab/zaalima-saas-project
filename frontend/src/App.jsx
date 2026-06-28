@@ -1,25 +1,35 @@
-import { useEffect } from 'react'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
+import Wishlist from "./pages/Wishlist";
+import Orders from "./pages/Orders";
+import Profile from "./pages/Profile";
 
 function App() {
-  useEffect(() => {
-    fetch("http://localhost:5000/")
-      .then(res => res.text())
-      .then(data => {
-        console.log("API Response:", data);
-      })
-      .catch(err => {
-        console.log("API Error:", err);
-      });
-  }, [])
-
   return (
-    <div style={{ textAlign: 'center', padding: '50px' }}>
-      <h1>🎉 Zaalima Project Running</h1>
-      <p style={{ fontSize: '18px', marginTop: '20px' }}>Welcome to your SaaS application</p>
-      <p>Check your browser console to see the API response.</p>
-    </div>
-  )
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
