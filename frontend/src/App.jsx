@@ -6,9 +6,14 @@ import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
-/* Customer Pages */
+/* Customer Pages — Day 1 */
 import Login from './pages/customer/Login';
 import Register from './pages/customer/Register';
+
+/* Customer Pages — Day 2 */
+import Home from './pages/customer/Home';
+import Products from './pages/customer/Products';
+import ProductDetails from './pages/customer/ProductDetails';
 
 /* Misc Pages */
 import NotFound from './pages/NotFound';
@@ -23,22 +28,11 @@ function App() {
             {/* ======================== */}
             {/* PUBLIC ROUTES            */}
             {/* ======================== */}
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-
-            {/* ======================== */}
-            {/* PLACEHOLDER HOME (Day 2) */}
-            {/* ======================== */}
-            <Route
-              path="/"
-              element={
-                <div className="container py-5 text-center">
-                  <h1 className="display-4 fw-bold mb-3">Welcome to Zaalima</h1>
-                  <p className="text-muted fs-5">Your trusted multi-vendor e-commerce platform.</p>
-                  <p className="text-muted">Full Home page coming in Day 2.</p>
-                </div>
-              }
-            />
 
             {/* ======================== */}
             {/* 404 CATCH-ALL            */}

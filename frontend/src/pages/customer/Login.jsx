@@ -55,7 +55,7 @@ const Login = () => {
                   <FiLogIn size={28} className="text-primary" />
                 </div>
                 <h3 className="fw-bold mb-1">Welcome Back</h3>
-                <p className="text-muted">Sign in to your Zaalima account</p>
+                <p className="text-muted">Sign in to your Vistky account</p>
               </div>
 
               <AlertMessage type="danger" message={error} onClose={() => setError('')} />

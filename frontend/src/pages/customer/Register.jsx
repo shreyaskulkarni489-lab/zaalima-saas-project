@@ -56,7 +56,7 @@ const Register = () => {
                   <FiUserPlus size={28} className="text-success" />
                 </div>
                 <h3 className="fw-bold mb-1">Create Account</h3>
-                <p className="text-muted">Join Zaalima today</p>
+                <p className="text-muted">Join Vistky today</p>
               </div>
 
               <AlertMessage type="danger" message={error} onClose={() => setError('')} />

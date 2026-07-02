@@ -160,7 +160,7 @@ const Navbar = () => {
       <div className="container">
         <Link to="/" className="navbar-brand d-flex align-items-center fw-bold" onClick={closeMenu}>
           <FiShoppingBag className="me-2" size={24} />
-          Zaalima
+          Vistky
         </Link>
         <button
           className="navbar-toggler border-0"

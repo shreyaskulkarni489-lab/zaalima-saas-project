@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-4 mb-3 mb-md-0">
-            <h5 className="fw-bold">Zaalima</h5>
+            <h5 className="fw-bold">Vistky</h5>
             <p className="text-secondary mb-0">Your trusted multi-vendor e-commerce platform.</p>
           </div>
           <div className="col-md-4 mb-3 mb-md-0">
@@ -17,12 +17,12 @@ const Footer = () => {
           </div>
           <div className="col-md-4">
             <h6 className="fw-bold">Contact</h6>
-            <p className="text-secondary mb-0">support@zaalima.com</p>
+            <p className="text-secondary mb-0">support@vistky.com</p>
             <p className="text-secondary mb-0">+91 98765 43210</p>
           </div>
         </div>
         <hr className="border-secondary" />
-        <p className="text-center text-secondary mb-0">&copy; {new Date().getFullYear()} Zaalima. All rights reserved.</p>
+        <p className="text-center text-secondary mb-0">&copy; {new Date().getFullYear()} Vistky. All rights reserved.</p>
       </div>
     </footer>
   );
