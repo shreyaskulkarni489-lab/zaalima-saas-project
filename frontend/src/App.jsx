@@ -21,6 +21,9 @@ import Cart from './pages/customer/Cart';
 import Checkout from './pages/customer/Checkout';
 import Orders from './pages/customer/Orders';
 
+/* Vendor Pages */
+import VendorDashboard from './pages/vendor/Dashboard';
+
 /* Misc Pages */
 import NotFound from './pages/NotFound';
 
@@ -72,6 +75,18 @@ function App() {
               element={
                 <ProtectedRoute roles={['customer']}>
                   <Orders />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* ======================== */}
+            {/* PROTECTED VENDOR ROUTES   */}
+            {/* ======================== */}
+            <Route
+              path="/vendor/dashboard"
+              element={
+                <ProtectedRoute roles={['vendor']}>
+                  <VendorDashboard />
                 </ProtectedRoute>
               }
             />
